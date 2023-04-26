@@ -1,0 +1,7 @@
+- name: "Set {{ cb_user }} OS user limits"
+  pam_limits:
+    domain: "{{ item.domain }}"
+    limit_type: "{{ item.type }}"
+    limit_item: "{{ item.item }}"
+    value: "{{ item.value }}"
+  loop: "{{ couchbase_user_limits | list | unique }}"

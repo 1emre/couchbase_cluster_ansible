@@ -1,0 +1,17 @@
+- name: "CouchBase Installation"
+  hosts: couchbase_cluster
+  become: True
+
+  roles:
+    - firewall
+    - selinux
+    - sysctl
+    - limits
+    - couchbase
+
+- name: "CouchBase Config"
+  hosts: couchbase_main
+  become: True
+
+  roles:
+    - couchbase_master

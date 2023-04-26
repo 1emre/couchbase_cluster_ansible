@@ -1,0 +1,10 @@
+- name: "Download & Install CouchBase Repository"
+  yum:
+    name: "{{ couchbase_latest_repo_url }}"
+    state: present
+    update_cache: no
+- name: "Install CouchBase Packages"
+  yum:
+    name: "couchbase-server-community"
+    state: present
+    update_cache: no

@@ -1,0 +1,11 @@
+- name: "Configure main node"
+  shell: /opt/couchbase/bin/couchbase-cli cluster-init -c {{ couchbase_master_node.host }}:{{ couchbase_master_node.port }} --cluster-username={{ admin_user }} --cluster-password={{ admin_password }} --cluster-port={{ couchbase_master_node.port }} --cluster-ramsize={{ cluster_ram_quota }}
+
+- name: "Create shell script for configuring main node"
+  action: template src=templates/couchbase-add-node.j2 dest=/tmp/addnodes.sh mode=750
+
+- name: "Launch config script"
+  action: shell /tmp/addnodes.sh
+
+- name: "Rebalance the cluster"
+  shell: /opt/couchbase/bin/couchbase-cli rebalance -c {{ couchbase_master_node.host }}:{{ couchbase_master_node.port }} -u {{ admin_user }} -p {{ admin_password }}

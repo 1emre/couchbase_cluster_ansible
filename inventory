@@ -1,0 +1,13 @@
+[couchbase_main]
+cb1 ansible_host=10.0.2.101
+
+[couchbase_nodes]
+cb2 ansible_host=10.0.2.102
+cb3 ansible_host=10.0.2.103
+
+[couchbase_cluster:children]
+couchbase_main
+couchbase_nodes
+
+[all:vars]
+ansible_user='root'

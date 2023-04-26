@@ -1,0 +1,7 @@
+cb_user: couchbase
+
+couchbase_user_limits:
+  - { domain: "{{ cb_user }}", type: "soft", item: "nofile", value: "70000" }
+  - { domain: "{{ cb_user }}", type: "hard", item: "nofile", value: "70000" }
+  - { domain: "{{ cb_user }}", type: "soft", item: "nproc", value: "10000" }
+  - { domain: "{{ cb_user }}", type: "hard", item: "nproc", value: "10000" }
